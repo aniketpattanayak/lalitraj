@@ -4,7 +4,7 @@ import steelImg from "../assets/steel.png";
 import pharmaImg from "../assets/pharma.png";
 import nonwovenImg from "../assets/nonwoven.png";
 import moldingImg from "../assets/molding.png";
-import lrbcLogo from "../assets/lrbc.jpeg";
+import lrbcLogo from "../assets/lrbc.png";
 import arvLogo from "../assets/ARV.png";
 import aveniorLogo from "../assets/Avenior.jpeg";
 import colorplasLogo from "../assets/Colorplas.png";
@@ -56,7 +56,7 @@ export default function LRBCLanding() {
       <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? "bg-white/90 backdrop-blur-xl shadow-lg py-3" : "bg-transparent py-5"}`}>
         <div className="container mx-auto px-6 flex justify-between items-center">
           <div className="flex items-center gap-3 group cursor-pointer" onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})}>
-            <div className="bg-white/95 backdrop-blur-sm px-3 py-1.5 rounded-lg shadow-sm border border-white/10 hover:shadow-md transition-all">
+            <div className="backdrop-blur-sm px-3 py-1.5 rounded-lg shadow-sm border border-white/10 hover:shadow-md transition-all">
               <img src={lrbcLogo} alt="LRBC Logo" className="h-6 xs:h-12 w-auto object-contain" />
             </div>
             <span className={`text-3xl font-black tracking-tighter ${scrolled ? "text-slate-900" : "text-white"}`}>LRBC</span>
