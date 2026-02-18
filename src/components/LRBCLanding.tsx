@@ -2,14 +2,18 @@ import { useState, useEffect } from "react";
 import automationImg from "../assets/automation.png";
 import steelImg from "../assets/steel.png";
 import pharmaImg from "../assets/pharma.png";
+import pharmaceuticalImg from "../assets/pharmaceutical.png";
 import nonwovenImg from "../assets/nonwoven.png";
 import moldingImg from "../assets/molding.png";
-import lrbcLogo from "../assets/lrbc.png";
+import lrbcLogo from "../assets/lrbc.jpeg";
 import arvLogo from "../assets/ARV.png";
 import aveniorLogo from "../assets/Avenior.jpeg";
 import colorplasLogo from "../assets/Colorplas.png";
 import chefmateLogo from "../assets/Chefmate.png";
 import navtechLogo from "../assets/Navtech.jpeg";
+
+import PrivacyPolicy from "./PrivacyPolicy";
+import TermsAndConditions from "./TermsAndConditions";
 
 const corporateImg = "https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&q=80&w=2074";
 
@@ -18,6 +22,8 @@ export default function LRBCLanding() {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [activeSection, setActiveSection] = useState("hero");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [showPrivacy, setShowPrivacy] = useState(false);
+  const [showTerms, setShowTerms] = useState(false);
   const [formState, setFormState] = useState({ status: "idle", name: "", email: "", industry: "Steel Manufacturing", message: "" });
 
   useEffect(() => {
@@ -50,13 +56,15 @@ export default function LRBCLanding() {
 
   return (
     <div className="min-h-screen bg-slate-50 font-sans text-slate-900">
+      <PrivacyPolicy isOpen={showPrivacy} onClose={() => setShowPrivacy(false)} />
+      <TermsAndConditions isOpen={showTerms} onClose={() => setShowTerms(false)} />
       {/* Progress Bar */}
       <div className="fixed top-0 left-0 h-1 bg-petrol-600 z-[60] transition-all duration-100 ease-out" style={{ width: `${scrollProgress}%` }}></div>
 
       <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? "bg-white/90 backdrop-blur-xl shadow-lg py-3" : "bg-transparent py-5"}`}>
         <div className="container mx-auto px-6 flex justify-between items-center">
           <div className="flex items-center gap-3 group cursor-pointer" onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})}>
-            <div className="backdrop-blur-sm px-3 py-1.5 rounded-lg shadow-sm border border-white/10 hover:shadow-md transition-all">
+            <div className="bg-white/95 backdrop-blur-sm px-3 py-1.5 rounded-lg shadow-sm border border-white/10 hover:shadow-md transition-all">
               <img src={lrbcLogo} alt="LRBC Logo" className="h-6 xs:h-12 w-auto object-contain" />
             </div>
             <span className={`text-3xl font-black tracking-tighter ${scrolled ? "text-slate-900" : "text-white"}`}>LRBC</span>
@@ -112,13 +120,10 @@ export default function LRBCLanding() {
             <div className="text-white animate-pulse font-bold text-2xl
             drop-shadow-[0_0_10px_theme(colors.petrol.600)]">#</div>
 
-              {/* <div className="w-2.5 h-2.5 rounded-full bg-petrol-600 animate-pulse shadow-[0_0_10px_theme(colors.petrol.600)]"></div> */}
-              {/* <span className="text-white/80 font-black uppercase tracking-[0.4em] text-[15px]">Creating systems that scale</span> */}
               <span className="text-white/80 font-mono uppercase tracking-[0.28em]
                  text-[18px] font-semibold">
   Creating systems that scale
 </span>
-
             </div>
             
             <h1 className="animate-fade-in-up text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white mb-8 md:mb-12 leading-[1] md:leading-[0.95] tracking-tighter" style={{animationDelay: '100ms'}}>
@@ -274,7 +279,7 @@ export default function LRBCLanding() {
             { title: "Precision Moulding", img: moldingImg, tag: "Injection Moulding", desc: "Automated control for complex injection cycles." },
             { title: "Steel Manufacturing", img: steelImg, tag: "Heavy Industry", desc: "Resilient throughput analytics for heavy production." },
             { title: "Textile & Non-Woven", img: nonwovenImg, tag: "Technical Textiles", desc: "Process optimisation for high-yield technical textiles." },
-            { title: "Pharmaceutical", img: pharmaImg, tag: "Care & Compliance", desc: "Strict regulatory oversight and sterile environment compliance." }
+            { title: "Pharmaceutical", img: pharmaceuticalImg, tag: "Care & Compliance", desc: "Strict regulatory oversight and sterile environment compliance." }
           ].map((item, i) => (
             <div key={i} className="reveal-on-scroll group relative overflow-hidden rounded-[3rem] bg-slate-50 border border-slate-100 transition-all duration-700 hover:-translate-y-4 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.05)] hover:shadow-[0_50px_100px_-20px_rgba(0,0,0,0.1)]" style={{transitionDelay: `${i * 100}ms`}}>
               <div className="h-96 overflow-hidden relative">
@@ -493,11 +498,6 @@ export default function LRBCLanding() {
   </svg>
 </div>
 
-
-                  {/* <div className="p-10 bg-petrol-600 flex justify-between items-center group cursor-pointer">
-                     <span className="text-white text-2xl font-black italic tracking-tighter">Request Product Demo</span>
-                     <svg className="w-10 h-10 text-white transition-transform group-hover:translate-x-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
-                  </div> */}
                </div>
             </div>
           </div>
@@ -930,9 +930,10 @@ export default function LRBCLanding() {
             <div>
               <h4 className="text-white font-black uppercase tracking-[0.3em] text-[14px] mb-6">Connect</h4>
               <ul className="space-y-3">
-                {['Contact Support', 'Privacy Protocol', 'Security Policy', 'Cookie Framework'].map((link) => (
-                  <li key={link}><a href="#" className="text-white/40 hover:text-petrol-600 transition-colors font-medium text-base">{link}</a></li>
-                ))}
+                <li><a href="#contact" className="text-white/40 hover:text-petrol-600 transition-colors font-medium text-base">Contact Support</a></li>
+                <li><button onClick={() => setShowPrivacy(true)} className="text-white/40 hover:text-petrol-600 transition-colors font-medium text-base text-left">Privacy Policy</button></li>
+                <li><button onClick={() => setShowTerms(true)} className="text-white/40 hover:text-petrol-600 transition-colors font-medium text-base text-left">Terms & Conditions</button></li>
+                <li><a href="#" className="text-white/40 hover:text-petrol-600 transition-colors font-medium text-base">Cookie Framework</a></li>
               </ul>
             </div>
           </div>
