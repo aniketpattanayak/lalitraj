@@ -12,4 +12,5 @@ export default defineConfig({
     }),
     tailwindcss(),
   ],
+  base: '/lalitraj/', // <-- DOUBLE CHECK THIS LINE IS SAVED
 })
