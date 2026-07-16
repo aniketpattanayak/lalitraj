@@ -12,5 +12,6 @@ export default defineConfig({
     }),
     tailwindcss(),
   ],
-  base: '/lalitraj/', // <-- DOUBLE CHECK THIS LINE IS SAVED
+  // Change '/lalitraj/' to '/' or remove the line entirely
+  base: '/', 
 })
